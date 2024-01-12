@@ -1,15 +1,16 @@
 <?php
 session_start();
+include_once '../config.php';
 // Check cookies exists or not
 if (!isset($_SESSION['user'])) {
-  header('location: /login.php');
+  header("location: $appUrl/login.php");
 }
 // Check user has admin role or not
 else if (isset($_SESSION["role"]) && $_SESSION["role"] != 1) {
   setcookie('user', '', time() - 3600, '/');
   $_SESSION['success'] = false;
   $_SESSION['message'] = "You are not authorized to access the admin site.";
-  header('Location: /login.php');
+  header("location: $appUrl/login.php");
   exit;
 }
 $pageTitle = "Managers";

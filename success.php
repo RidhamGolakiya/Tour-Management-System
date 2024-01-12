@@ -14,7 +14,7 @@ if(isset($_SESSION['user_id'])){
     $transactionHelper->updatePaymentStatus($con, $checkoutSession->payment_intent, $userId);
     $_SESSION['success'] = true;
     $_SESSION['message'] = "You successfully booked a tour package. Go to dashboard for show more details.";
-    header('Location: /packages.php');
+    header("Location: $appUrl/packages.php");
     exit;
 }else{
     header("Location: index.php");

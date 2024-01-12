@@ -16,6 +16,21 @@ if ($con === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
+
+if ($con) {
+    $showSetting = "SELECT * FROM settings";
+    if ($result = mysqli_query($con, $showSetting)) {
+        $row = mysqli_fetch_array($result);
+        $_SESSION['favicon'] = $row['favicon'];
+        $_SESSION['site_name'] = $row['site_name'];
+        $_SESSION['logo'] = $row['logo'];
+        $_SESSION['themeColor'] = $row['themeColor'];
+        if (mysqli_num_rows($result) == 0) {
+            mysqli_query($con, $seedSetting);
+        }
+    };
+}
+
 // $userTable = "CREATE TABLE IF NOT EXISTS users(
 //     user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 //     username TEXT,
@@ -63,22 +78,6 @@ if ($con === false) {
 // ";
 
 // $seedSetting = "INSERT INTO settings (favicon,logo,site_name,themeColor) VALUES ('favicon.png', 'logo.png', 'Tourism','#009ef7')";
-
-// if ($con) {
-//     if (mysqli_query($con, $settings)) {
-//         $showSetting = "SELECT * FROM settings";
-//         if ($result = mysqli_query($con, $showSetting)) {
-//             $row = mysqli_fetch_array($result);
-//             $_SESSION['favicon'] = $row['favicon'];
-//             $_SESSION['site_name'] = $row['site_name'];
-//             $_SESSION['logo'] = $row['logo'];
-//             $_SESSION['themeColor'] = $row['themeColor'];
-//             if (mysqli_num_rows($result) == 0) {
-//                 mysqli_query($con, $seedSetting);
-//             }
-//         };
-//     }
-// }
 
 // $blogTable = "CREATE TABLE IF NOT EXISTS blogs (
 // 	blog_id int AUTO_INCREMENT Primary Key,

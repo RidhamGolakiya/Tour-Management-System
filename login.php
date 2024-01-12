@@ -11,7 +11,7 @@ function redirectIfLoggedIn()
     } elseif ($_SESSION['role'] == 2) {
       header('Location: /manager/dashboard.php');
     } elseif ($_SESSION['role'] == 0) {
-      header('Location: /user/dashboard.php');
+      header("Location: $appUrl/user/dashboard.php");
     }
     exit;
   }
@@ -175,7 +175,7 @@ if (!isset($_ENV['GOOGLE_CLIENT_ID']) || !isset($_ENV['GOOGLE_SECRET']) || !isse
     handleGoogleLogin($con, $client, $service);
     handleRegularLogin($con);
   } catch (Exception $e) {
-    header('Location: /login.php');
+    header("location: $appUrl/login.php");
     exit;
   }
 }

@@ -13,7 +13,7 @@ if (isset($_GET['packageId'])) {
     $images = $row['images'];
     $pageTitle = $name;
 } else {
-    header("Location: /packages.php");
+    header("Location: $appUrl/packages.php");
 }
 ?>
 

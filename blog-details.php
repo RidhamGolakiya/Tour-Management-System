@@ -12,7 +12,7 @@ if (isset($_GET['blog_id'])) {
     if (!$result || mysqli_num_rows($result) == 0) {
         $_SESSION['success'] = false;
         $_SESSION['message'] = "Blog not found";
-        header("location: /blog.php");
+        header("location: $appUrl/blog.php");
         exit();
     } else {
         $row = mysqli_fetch_array($result);

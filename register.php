@@ -5,7 +5,7 @@ if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) {
     header('Location: /manager/dashboard.php');
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
-    header('Location: /user/dashboard.php');
+    header("Location: $appUrl/user/dashboard.php");
 }
 include_once "config.php";
 try {
@@ -32,7 +32,7 @@ try {
                     $_SESSION['message'] = "Registred successfully please login.";
                     echo "<script>
         setTimeout(function() {
-           window.location.href = '/login.php';
+           window.location.href = '$appUrl/login.php';
         },500);
     </script>";
                 } else {

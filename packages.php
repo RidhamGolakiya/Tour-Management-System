@@ -23,6 +23,7 @@ $resultCountries = mysqli_query($con, $fetchCountries);
     <link href="./assets/toastr/toaster.min.css" rel="stylesheet">
     <script src="./assets/toastr/toastr.min.js"></script>
     <script>
+        let appUrl = <?php require_once "config.php"; $appUrl;?>//
         $(document).ready(function() {
             function load_data(query, selectedCountry, page) {
                 $.ajax({
@@ -76,7 +77,7 @@ $resultCountries = mysqli_query($con, $fetchCountries);
                                     html += '</span></p>';
                                 }
                                 html += '<p>';
-                                html += '<a href="/package-details.php?packageId=' + package.tour_id + '" class="default-btn">';
+                                html += `<a href="./package-details.php?packageId=${package.tour_id}" class="default-btn">`;
                                 html += '<span>Book Now | </span>';
                                 html += '<span>₹ ' + formattedPrice + '</span>';
                                 html += '</a>';

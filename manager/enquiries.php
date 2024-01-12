@@ -5,14 +5,14 @@ require_once "../config.php";
 if (!isset($_SESSION['user'])) {
   $_SESSION['success'] = false;
   $_SESSION['message'] = "Authentication failed";
-  header('location: /login.php');
+  header("location: $appUrl/login.php");
 }
 // Check user has manager role or not
 else if (isset($_SESSION["role"]) && $_SESSION["role"] != 2) {
   setcookie('user', '', time() - 3600, '/');
   $_SESSION['success'] = false;
   $_SESSION['message'] = "You are not authorized to access the manager site.";
-  header('Location: /login.php');
+  header("location: $appUrl/login.php");
   exit;
 }
 $pageTitle = "Enquiries";

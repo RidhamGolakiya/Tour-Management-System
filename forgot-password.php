@@ -70,7 +70,7 @@ if (isset($_POST['change_password'])) {
                                     $success = $_SESSION['success'];
                                     $toastType = $success ? 'success' : 'error';
                                     echo "<script> toastr.$toastType('$message');  setTimeout(function() {
-                                        window.location.href = '/login.php';
+                                        window.location.href = '$appUrl/login.php';
                                      },1000)</script>";
                                     unset($_SESSION['message']);
                                     unset($_SESSION['success']);

@@ -2,7 +2,7 @@
 session_start();
 include_once "config.php";
 if (!isset($_SESSION['create_question'])) {
-    header("Location: /login.php");
+    header("Location: $appUrl/login.php");
 }
 
 if (isset($_POST['save_squestion'])) {
@@ -13,7 +13,7 @@ if (isset($_POST['save_squestion'])) {
     if (mysqli_query($con, $userQuestion)) {
         $_SESSION['success'] = true;
         $_SESSION['message'] = "Security question added successfully";
-        header('Location: /user/dashboard.php');
+        header("Location: $appUrl/user/dashboard.php");
         exit;
     }
 }
