@@ -1,0 +1,148 @@
+*{
+    margin:0px;
+    padding:0px;
+    scroll-behavior: smooth;
+}
+
+.navbar{
+    background-color:rgb(240, 237, 237) !important;
+    opacity: 1.0;
+}
+.navbar ul li a{
+    margin:5px 7px;
+    font-size:19px;
+    font-family:inherit;
+}
+
+.nav-link:hover{
+    color: grey;
+    border-bottom:1px solid gray;
+}
+
+.active_nav{
+    color: grey;
+    border-bottom:1px solid gray;
+}
+
+.navbar img:hover{
+    cursor: pointer;
+}
+.footer {
+    background-color:rgb(240, 237, 237);
+    font-family: math;
+    padding: 40px;
+    opacity: 0.9;
+    position: sticky;
+    bottom:0px;
+}
+
+.foot {
+    display: flex;
+    padding-bottom: 15px;
+
+}
+.foot2,
+.foot3,
+.foot4 {
+    padding-left: 60px;
+}
+
+.right {
+    float: right;
+    margin-top: -50px;
+
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media only screen and (max-width:914px){
+    .right{
+        padding-top:100px;
+       float:left;
+}
+    .footImage img{
+        height:39.5%;
+    }
+
+}
+@media only screen and (max-width:768px){
+    .footText{
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .footImage img{
+        height:42%;
+    }
+}
+@media only screen and (max-width:607px){
+    .foot{
+        display:grid;
+        grid-template-columns: auto auto;
+    }
+    .foot3{
+        padding-left:0px;
+        margin-top:30px;
+    }
+    .foot4{
+        margin-top:30px;
+    }
+    .footImage img{
+        height:65.5%;
+    }
+    .footer-text{
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width:418px){
+    .foot{
+        display:grid;
+        grid-template-columns: auto;
+    }
+    .foot2{
+        padding-left:0px;
+        margin-top:30px;
+
+    }
+    .foot4{
+        padding-left:0px;
+        margin-top:30px;
+
+    }
+    .footImage img{
+        height:107%;
+    }
+     .footer-text{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width:320px){
+    .foot{
+        display:grid;
+        grid-template-columns: auto;
+    }
+    .foot2{
+        padding-left:0px;
+        margin-top:30px;
+
+    }
+    .foot4{
+        padding-left:0px;
+        margin-top:30px;
+
+    }
+    .footImage img{
+        height:107%;
+    }
+     .footer-text{
+        font-size: 15px;
+    }
+}
+.footer p{
+    font-size:17px
+}
