@@ -31,12 +31,12 @@ $(document).ready(function () {
 
     var sidebarData = [
       {
-        link: "/user/dashboard.php",
+        link: setting.appUrl+"/user/dashboard.php",
         iconClass: "fa-solid fa-chart-pie",
         label: "Dashboard",
       },
       {
-        link: "/user/booking.php",
+        link: setting.appUrl+"/user/booking.php",
         iconClass: "fa-solid fa-cubes",
         label: "Booking",
       },

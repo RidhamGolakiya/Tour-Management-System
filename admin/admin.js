@@ -30,22 +30,22 @@ $(document).ready(function () {
 
   var sidebarData = [
     {
-      link: "/admin/dashboard.php",
+      link: setting.appUrl+"/admin/dashboard.php",
       iconClass: "fa-solid fa-chart-pie",
       label: "Dashboard",
     },
     {
-      link: "/admin/users.php",
+      link: setting.appUrl+"/admin/users.php",
       iconClass: "fa-solid fa-users",
       label: "Users",
     },
     {
-      link: "/admin/managers.php",
+      link: setting.appUrl+"/admin/managers.php",
       iconClass: "fa-solid fa-user",
       label: "Managers",
     },
     {
-      link: "/admin/tour-packages.php",
+      link: setting.appUrl+"/admin/tour-packages.php",
       iconClass: "fa-solid fa-cubes",
       label: "Tour Packages",
       sublink:[
@@ -55,12 +55,12 @@ $(document).ready(function () {
       ]
     },
     {
-      link: "/admin/booking.php",
+      link: setting.appUrl+"/admin/booking.php",
       iconClass: "fa-solid fa-cubes",
       label: "Package Booking",
     },
     {
-      link: "/admin/blogs.php",
+      link: setting.appUrl+"/admin/blogs.php",
       iconClass: "fa-solid fa-paste",
       label: "Blogs",
       sublink:[
@@ -69,32 +69,32 @@ $(document).ready(function () {
       ]
     },
     {
-      link: "/admin/transactions.php",
+      link: setting.appUrl+"/admin/transactions.php",
       iconClass: "fa-solid fa-money-bill-wave",
       label: "Transactions",
     },
     {
-      link: "/admin/enquiries.php",
+      link: setting.appUrl+"/admin/enquiries.php",
       iconClass: "fa-solid fa-question-circle",
       label: "Enquiries",
     },
     {
-      link: "/admin/security-questions.php",
+      link: setting.appUrl+"/admin/security-questions.php",
       iconClass: "fa-solid fa-shield",
       label: "Security Questions",
     },
     {
-      link: "/admin/countries.php",
+      link: setting.appUrl+"/admin/countries.php",
       iconClass: "fa-solid fa-globe",
       label: "Countries",
     },
     {
-      link: "/admin/states.php",
+      link: setting.appUrl+"/admin/states.php",
       iconClass: "fas fa-map-marker-alt",
       label: "States",
     },
     {
-      link: "/admin/settings.php",
+      link: setting.appUrl+"/admin/settings.php",
       iconClass: "fa-solid fa-gear",
       label: "Settings",
     },

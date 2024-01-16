@@ -28,15 +28,15 @@ $(document).ready(function () {
 
   userProfile &&
     $("#profileImage").after(`<span>${userProfile?.name ? userProfile?.name : userProfile?.username}</span>`);
-    
+
   var sidebarData = [
     {
-      link: "/manager/dashboard.php",
+      link: setting.appUrl+"/manager/dashboard.php",
       iconClass: "fa-solid fa-chart-pie",
       label: "Dashboard",
     },
     {
-      link: "/manager/tour-packages.php",
+      link: setting.appUrl+"/manager/tour-packages.php",
       iconClass: "fa-solid fa-cubes",
       label: "Tour Packages",
       sublink:[
@@ -46,7 +46,7 @@ $(document).ready(function () {
       ]
     },
     {
-      link: "/manager/blogs.php",
+      link: setting.appUrl+"/manager/blogs.php",
       iconClass: "fa-solid fa-paste",
       label: "Blogs",
       sublink:[
@@ -55,7 +55,7 @@ $(document).ready(function () {
       ]
     },
     {
-      link: "/manager/enquiries.php",
+      link: setting.appUrl+"/manager/enquiries.php",
       iconClass: "fa-solid fa-question-circle",
       label: "Enquiries",
     },

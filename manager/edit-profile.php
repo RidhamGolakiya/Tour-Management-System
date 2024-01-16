@@ -81,12 +81,14 @@ if (isset($_POST['btnProfile'])) {
         let isSuccess = '" . $_SESSION['success'] . "';
         let username = '" . $_SESSION['username'] . "';
         let image = '" . $_SESSION['image'] . "';
+        let appUrl = $appUrl;
         if (isSuccess) {
             userprofile = JSON.parse(userprofile);
             localStorage.setItem('user', JSON.stringify({
                 ...userprofile,
                 image: image,
-                username: username
+                username: username,
+                appUrl:appUrl
             }));
             setTimeout(function() {
                 window.location.href = '" . ("/manager/dashboard.php") . "';
