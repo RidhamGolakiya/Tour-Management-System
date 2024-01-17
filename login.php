@@ -3,13 +3,13 @@ session_start();
 require_once 'vendor/autoload.php';
 include_once "config.php";
 
-function redirectIfLoggedIn()
+function redirectIfLoggedIn($appUrl)
 {
   if (isset($_SESSION['user'])) {
     if ($_SESSION['role'] == 1) {
-      header('Location: /admin/dashboard.php');
+      header("Location: $appUrl/admin/dashboard.php");
     } elseif ($_SESSION['role'] == 2) {
-      header('Location: /manager/dashboard.php');
+      header("Location: $appUrl/manager/dashboard.php");
     } elseif ($_SESSION['role'] == 0) {
       header("Location: $appUrl/user/dashboard.php");
     }
@@ -17,7 +17,7 @@ function redirectIfLoggedIn()
   }
 }
 
-function handleGoogleLogin($con, $client, $service)
+function handleGoogleLogin($con, $client, $service,$appUrl)
 {
   if (isset($_GET['google_login'])) {
     $authUrl = $client->createAuthUrl();
@@ -51,7 +51,7 @@ function handleGoogleLogin($con, $client, $service)
           echo "<script>
           localStorage.setItem('user', JSON.stringify(" . json_encode($user) . "));
           setTimeout(function() {
-             window.location.href = '/user/dashboard.php';
+             window.location.href = '$appUrl/user/dashboard.php';
           },100);
       </script>";
           exit;
@@ -85,7 +85,7 @@ function handleGoogleLogin($con, $client, $service)
   }
 }
 
-function handleRegularLogin($con)
+function handleRegularLogin($con,$appUrl)
 {
   if (isset($_POST['login_btn']) && $_POST['login_btn'] == 'log_btn') {
     $email = trim($_POST['email']);
@@ -106,14 +106,14 @@ function handleRegularLogin($con)
         $_SESSION['success'] = true;
         $_SESSION['message'] = "Logged in successfully";
         if ($row['role'] == 1) {
-          $path = "/admin/dashboard.php";
+          $path = "$appUrl/admin/dashboard.php";
         } elseif ($row['role'] == 2) {
-          $path = "/manager/dashboard.php";
+          $path = "$appUrl/manager/dashboard.php";
         } elseif ($row['squestion'] == null || $row['squestion'] == '') {
           $_SESSION['create_question'] = true;
-          $path = "/security-question.php";
+          $path = "$appUrl/security-question.php";
         } else {
-          $path = "/user/dashboard.php";
+          $path = "$appUrl/user/dashboard.php";
         }
 
         $userData = [
@@ -171,9 +171,9 @@ if (!isset($_ENV['GOOGLE_CLIENT_ID']) || !isset($_ENV['GOOGLE_SECRET']) || !isse
     // Create an instance of Google_Service_Oauth2
     $service = new Google_Service_Oauth2($client);
 
-    redirectIfLoggedIn();
-    handleGoogleLogin($con, $client, $service);
-    handleRegularLogin($con);
+    redirectIfLoggedIn($appUrl);
+    handleGoogleLogin($con, $client, $service,$appUrl);
+    handleRegularLogin($con,$appUrl);
   } catch (Exception $e) {
     header("location: $appUrl/login.php");
     exit;
