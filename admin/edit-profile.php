@@ -49,7 +49,7 @@ if (isset($_POST['btnProfile'])) {
     if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
         $_SESSION['success'] = false;
         $_SESSION['message'] = "Only JPG, JPEG, PNG, and GIF files are allowed.";
-        header('Location: /admin/dashboard.php');
+        header("Location: $appUrl/admin/dashboard.php");
         exit;
     }
 

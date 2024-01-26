@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 1) {
-    header('Location: /admin/dashboard.php');
+    header("Location: $appUrl/admin/dashboard.php");
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) {
     header('Location: /manager/dashboard.php');
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 0) {

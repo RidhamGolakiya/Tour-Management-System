@@ -1,12 +1,14 @@
 <?php
 $current_url = $_SERVER['REQUEST_URI'];
 
+include ("../config.php");
+
 $menu_items = array(
-    '/' => 'Home',
+    "$appUrl"=> 'Home',
     // '/about-us.php' => 'About us',
-    '/packages.php' => 'Packages',
-    '/blog.php' => 'Blogs',
-    '/contact.php' => 'Contact us',
+    "$appUrl/packages.php' => 'Packages",
+    "$appUrl/blog.php" => 'Blogs',
+    "$appUrl/contact.php" => 'Contact us',
 );
 ?>
 

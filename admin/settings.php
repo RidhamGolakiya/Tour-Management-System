@@ -53,7 +53,7 @@ if (isset($_POST['btnSetting'])) {
         if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
             $_SESSION['success'] = false;
             $_SESSION['message'] = "Only JPG, JPEG, PNG, and GIF files are allowed.";
-            header('Location: /admin/dashboard.php');
+            header("Location: $appUrl/admin/dashboard.php");
             exit;
         }
 
@@ -65,7 +65,7 @@ if (isset($_POST['btnSetting'])) {
         } else {
             $_SESSION['success'] = false;
             $_SESSION['message'] = "Error uploading logo.";
-            header('Location: /admin/dashboard.php');
+            header("Location: $appUrl/admin/dashboard.php");
             exit;
         }
     }
@@ -84,7 +84,7 @@ if (isset($_POST['btnSetting'])) {
         if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
             $_SESSION['success'] = false;
             $_SESSION['message'] = "Only JPG, JPEG, PNG, and GIF files are allowed.";
-            header('Location: /admin/dashboard.php');
+            header("Location: $appUrl/admin/dashboard.php");
             exit;
         }
 
@@ -96,7 +96,7 @@ if (isset($_POST['btnSetting'])) {
         } else {
             $_SESSION['success'] = false;
             $_SESSION['message'] = "Error uploading favicon.";
-            header('Location: /admin/dashboard.php');
+            header("Location: $appUrl/admin/dashboard.php");
             exit;
         }
     }
@@ -129,7 +129,7 @@ if (isset($_POST['btnSetting'])) {
                 themeColor:themeColor
             }));
             setTimeout(function() {
-                window.location.href = '" . ("/admin/dashboard.php") . "';
+                window.location.href = '" . ("$appUrl/admin/dashboard.php") . "';
             }, 100);
         }</script>";
         exit;
