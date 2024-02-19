@@ -1,17 +1,20 @@
+<?php
+include_once "config.php";
+?>
 <div class="footer" class="text-dark" style="position:relative;">
     <div class="row d-flex justify-content-evenly">
         <div class="col-md-2">
             <h4>Information</h4><br>
-            <!-- <p><a class="text-decoration-none text-black fw-bold" href="/about-us.php">About Us</a></p> -->
-            <p><a class="text-decoration-none text-black fw-bold" href="/blog.php">Blog</a></p>
-            <p><a class="text-decoration-none text-black fw-bold" href="/packages.php">Packages</a></p>
+            <!-- <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/about-us.php">About Us</a></p> -->
+            <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/blog.php">Blog</a></p>
+            <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/packages.php">Packages</a></p>
 
         </div>
         <div class="col-md-2">
             <h4>Help</h4><br>
-            <p><a class="text-decoration-none text-black fw-bold" href="/contact.php">Contact Us</a></p>
-            <p><a class="text-decoration-none text-black fw-bold" href="/privacy-policy.php">Privacy Policy</a></p>
-            <p><a class="text-decoration-none text-black fw-bold" href="/terms-condition.php">Terms and Conditions</a></p>
+            <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/contact.php">Contact Us</a></p>
+            <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/privacy-policy.php">Privacy Policy</a></p>
+            <p><a class="text-decoration-none text-black fw-bold" href="<?php echo $appUrl;?>/terms-condition.php">Terms and Conditions</a></p>
         </div>
         <div class="col-md-2">
             <h4>Follow Us On</h4>

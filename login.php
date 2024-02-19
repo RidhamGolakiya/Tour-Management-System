@@ -17,7 +17,7 @@ function redirectIfLoggedIn($appUrl)
   }
 }
 
-function handleGoogleLogin($con, $client, $service,$appUrl)
+function handleGoogleLogin($con, $client, $service, $appUrl)
 {
   if (isset($_GET['google_login'])) {
     $authUrl = $client->createAuthUrl();
@@ -85,7 +85,7 @@ function handleGoogleLogin($con, $client, $service,$appUrl)
   }
 }
 
-function handleRegularLogin($con,$appUrl)
+function handleRegularLogin($con, $appUrl)
 {
   if (isset($_POST['login_btn']) && $_POST['login_btn'] == 'log_btn') {
     $email = trim($_POST['email']);
@@ -172,8 +172,8 @@ if (!isset($_ENV['GOOGLE_CLIENT_ID']) || !isset($_ENV['GOOGLE_SECRET']) || !isse
     $service = new Google_Service_Oauth2($client);
 
     redirectIfLoggedIn($appUrl);
-    handleGoogleLogin($con, $client, $service,$appUrl);
-    handleRegularLogin($con,$appUrl);
+    handleGoogleLogin($con, $client, $service, $appUrl);
+    handleRegularLogin($con, $appUrl);
   } catch (Exception $e) {
     header("location: $appUrl/login.php");
     exit;
@@ -304,15 +304,17 @@ if (!isset($_ENV['GOOGLE_CLIENT_ID']) || !isset($_ENV['GOOGLE_SECRET']) || !isse
                     <p class="fw-bold mt-1">Not registered yet?<a class="text-primary ms-2" href="register.php">Register Here.</a></p>
                   </div>
                 </form>
-                <div class="google-login">
-                  <p class="text-center fw-bolder">Or</p>
-                  <a href="login.php?google_login=true" class="btn btn-google">
-                    <span class="google-icon">
-                      <img src="./assets/images/google-icon.png" alt="Google Icon" class="google-icon-image">
-                    </span>
-                    Login with Google
-                  </a>
-                </div>
+                <?php if (!empty($_ENV['GOOGLE_CLIENT_ID']) && !empty($_ENV['GOOGLE_SECRET']) && !empty($_ENV['GOOGLE_REDIRECT_URI'])) : ?>
+                  <div class="google-login">
+                    <p class="text-center fw-bolder">Or</p>
+                    <a href="login.php?google_login=true" class="btn btn-google">
+                      <span class="google-icon">
+                        <img src="./assets/images/google-icon.png" alt="Google Icon" class="google-icon-image">
+                      </span>
+                      Login with Google
+                    </a>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
           </div>
