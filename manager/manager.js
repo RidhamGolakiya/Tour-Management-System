@@ -117,7 +117,7 @@ $(document).ready(function () {
               localStorage.clear();
               toastr.success("Logout successfully!");
               setTimeout(function () {
-                window.location.replace("/");
+                window.location.replace(setting.appUrl);
               }, 1000); // Redirect after 1 second
             }
           },
