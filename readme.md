@@ -166,24 +166,15 @@ Use the following command to run Tour-Management-System:
 ```sh
 php index.php
 ```
-
-### 🧪 Tests
-
-To execute tests, run:
-
-```sh
-vendor/bin/phpunit
-```
-
 ---
 
 ## 🤝 Contributing
 
 Contributions are welcome! Here are several ways you can contribute:
 
-- **[Submit Pull Requests](https://github/RidhamGolakiya/Tour-Management-System/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github/RidhamGolakiya/Tour-Management-System/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github/RidhamGolakiya/Tour-Management-System/issues)**: Submit bugs found or log feature requests for Tour-management-system.
+- **[Submit Pull Requests](https://github.com/RidhamGolakiya/Tour-Management-System/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/RidhamGolakiya/Tour-Management-System/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/RidhamGolakiya/Tour-Management-System/issues)**: Submit bugs found or log feature requests for Tour-management-system.
 
 <details closed>
     <summary>Contributing Guidelines</summary>
@@ -211,13 +202,3 @@ Contributions are welcome! Here are several ways you can contribute:
 Once your PR is reviewed and approved, it will be merged into the main branch.
 
 </details>
-
----
-
-## 👏 Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
-
-[**Return**](#-quick-links)
-
----
