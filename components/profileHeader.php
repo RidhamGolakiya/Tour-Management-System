@@ -19,7 +19,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
         </ul>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                <li> <a href="/index.php" title="Go to Home Page" class="text-black home p-1 d-flex justify-content-end"><i class="fa fa-home"></i></a></li>
+                <li> <a href="<?php echo $appUrl;?>" title="Go to Home Page" class="text-black home p-1 d-flex justify-content-end"><i class="fa fa-home"></i></a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                         <img width=35 height=35 id="profileImage" class="rounded-circle img-fluid mx-2" src="" alt="Profile Image">

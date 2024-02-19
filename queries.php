@@ -696,7 +696,7 @@ else if (isset($_POST["payment"])) {
     // Redirect or display a success message to the user.
     $_SESSION['success'] = true;
     $_SESSION['message'] = "You successfully booked a tour package. Go to dashboard for show more details.";
-    header('Location: /packages.php');
+    header("Location: $appUrl/packages.php");
 
   }
   // Stripe Payment Method
@@ -755,7 +755,7 @@ else if (isset($_POST["payment"])) {
   }else{
     $_SESSION['success'] = false;
     $_SESSION['message'] = mysqli_error($con);
-    header('Location: /packages.php');
+    header("Location: $appUrl/packages.php");
   }
 }
 

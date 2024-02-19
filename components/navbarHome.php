@@ -33,15 +33,15 @@ $menu_items = array(
             <ul style="text-decoration: none; list-style-type: none;" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <?php
                 if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
-                    $role = "admin";
+                    $role = "$appUrl/admin/dashboard.php";
                 } else if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-                    $role = "manager";
+                    $role = "$appUrl/manager/dashboard.php";
                 } else {
-                    $role = "user";
+                    $role = "$appUrl/user/dashboard.php";
                 }
 
                 if (isset($_SESSION['role'])) {
-                    echo ' <li class="nav-item"> <a class="nav-link" href="/' . $role . '/dashboard.php">Dashboard</a>  </li>';
+                    echo ' <li class="nav-item"> <a class="nav-link" href="' . $role . '">Dashboard</a>  </li>';
                 } else {
                     echo '
                         <li class="nav-item">

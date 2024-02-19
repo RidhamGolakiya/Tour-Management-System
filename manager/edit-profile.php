@@ -49,7 +49,7 @@ if (isset($_POST['btnProfile'])) {
     if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
         $_SESSION['success'] = false;
         $_SESSION['message'] = "Only JPG, JPEG, PNG, and GIF files are allowed.";
-        header('Location: /manager/dashboard.php');
+        header("Location: $appUrl/manager/dashboard.php");
         exit;
     }
 
@@ -91,7 +91,7 @@ if (isset($_POST['btnProfile'])) {
                 appUrl:appUrl
             }));
             setTimeout(function() {
-                window.location.href = '" . ("/manager/dashboard.php") . "';
+                window.location.href = '" . ("$appUrl/manager/dashboard.php") . "';
             }, 100);
         }</script>";
         exit;

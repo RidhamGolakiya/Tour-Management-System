@@ -65,14 +65,14 @@ function handleGoogleLogin($con, $client, $service,$appUrl)
       $_SESSION['email'] = $row['email'];
       $_SESSION['user_id'] = $row['user_id'];
       if ($row['role'] == 1) {
-        $path = "/admin/dashboard.php";
+        $path = "$appUrl/admin/dashboard.php";
       } elseif ($row['role'] == 2) {
-        $path = "/manager/dashboard.php";
+        $path = "$appUrl/manager/dashboard.php";
       } elseif ($row['squestion'] == null || $row['squestion'] == '') {
         $_SESSION['create_question'] = true;
-        $path = "/security-question.php";
+        $path = "$appUrl/security-question.php";
       } else {
-        $path = "/user/dashboard.php";
+        $path = "$appUrl/user/dashboard.php";
       }
       echo "<script>
       localStorage.setItem('user', JSON.stringify(" . json_encode($row) . "));

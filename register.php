@@ -3,7 +3,7 @@ session_start();
 if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 1) {
     header("Location: $appUrl/admin/dashboard.php");
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-    header('Location: /manager/dashboard.php');
+    header("Location: $appUrl/manager/dashboard.php");
 } else if (isset($_COOKIE["user"]) && isset($_SESSION['user']) && isset($_SESSION['role']) && $_SESSION['role'] == 0) {
     header("Location: $appUrl/user/dashboard.php");
 }

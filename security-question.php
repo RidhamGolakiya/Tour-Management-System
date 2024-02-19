@@ -72,7 +72,7 @@ if (isset($_POST['save_squestion'])) {
                                     } else {
                                         $_SESSION['success'] = true;
                                         $_SESSION['message'] = "Logged in successfully";
-                                        header("Location: /user/dashboard.php");
+                                        header("Location: $appUrl/user/dashboard.php");
                                     }
 
                                     ?>

@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
 } else {
     $_SESSION['success'] = false;
     $_SESSION['message'] = "Tour package Id not found.";
-    header('Location: /admin/tour-packages.php');
+    header("Location: $appUrl/admin/tour-packages.php");
 }
 
 $pageTitle = "Tour Packages";

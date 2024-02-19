@@ -29,7 +29,7 @@ if (isset($_GET['blog_id'])) {
 } else {
     $_SESSION['success'] = false;
     $_SESSION['message'] = "Blog id not found.";
-    header('Location: /admin/blogs.php');
+    header("Location: $appUrl/admin/blogs.php");
 }
 
 $pageTitle = "Edit Blog";

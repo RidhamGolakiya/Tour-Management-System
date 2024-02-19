@@ -17,7 +17,7 @@ if(isset($_SESSION['user_id'])){
     header("Location: $appUrl/packages.php");
     exit;
 }else{
-    header("Location: index.php");
+    header("Location: $appUrl");
 }
 ?>
 
