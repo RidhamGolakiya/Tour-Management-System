@@ -137,12 +137,34 @@ cd Tour-Management-System
 composer install
 ```
 
+4. create .env file and configure it.
+
+```sh
+APP_URL="https://example.com"
+DB_HOST=YOUR_HOST_NAME
+DB_USER=YOUR_DATABASE_USERNAME
+DB_PASS=YOUR_DATABASE_PASSWORD
+DB_NAME=YOUR_DATABASE_NAME
+
+GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID
+GOOGLE_SECRET=GOOGLE_SECRET
+GOOGLE_REDIRECT_URI=GOOGLE_REDIRECT_URI
+
+STRIPE_API_SECRET_KEY=STRIPE_API_SECRET_KEY
+
+```
+
+5. Create a following folder inside the uploads/
+   - users
+   - tours
+   - blogs
+
 ### 🤖 Running Tour-Management-System
 
 Use the following command to run Tour-Management-System:
 
 ```sh
-php main.php
+php index.php
 ```
 
 ### 🧪 Tests
