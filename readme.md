@@ -161,10 +161,12 @@ STRIPE_API_SECRET_KEY=STRIPE_API_SECRET_KEY
 
 ### 🤖 Running Tour-Management-System
 
-Use the following command to run Tour-Management-System:
+run Tour-Management-System:
 
 ```sh
-php index.php
+Your respective folder path:
+For example, using xampp and put this project inside the htdocs so url will be
+http://localhost/yourprojectname
 ```
 ---
 
