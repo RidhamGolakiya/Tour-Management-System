@@ -71,9 +71,9 @@ if (isset($_GET['packageId'])) {
                 if (isset($_SESSION['email']) && isset($_SESSION['role']) && $_SESSION['role'] != 1  && $_SESSION['role'] != 2) {
                     echo '<a href="#" class="default-btn" data-bs-toggle="modal" data-bs-target="#packageModal"><span>Book Now</span><span></a>';
                 } else if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
-                    echo '<a href="/admin/dashboard.php" class="default-btn"><span>Go to Admin Panel</span><span></a>';
+                    echo "<a href='$appUrl/admin/dashboard.php' class='default-btn'><span>Go to Admin Panel</span><span></a>";
                 } else if (isset($_SESSION['role']) && $_SESSION['role'] == 2) {
-                    echo '<a href="/manager/dashboard.php" class="default-btn"><span>Go to Manager Panel</span><span></a>';
+                    echo "<a href='$appUrl/manager/dashboard.php' class='default-btn'><span>Go to Manager Panel</span><span></a>";
                 } else {
                     echo '<a href="./login.php" class="default-btn"><span>Login for Booking</span><span></a>';
                 }

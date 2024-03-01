@@ -88,7 +88,7 @@ try {
                         </p>
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="/index.php" title="Go to Home Page" class="text-black home p-1 d-flex justify-content-end"><i class="fa fa-home"></i></a>
+                                <a href="<?php echo $appUrl;?>" title="Go to Home Page" class="text-black home p-1 d-flex justify-content-end"><i class="fa fa-home"></i></a>
                                 <?php
                                 if (isset($_SESSION['message']) && isset($_SESSION['success'])) {
                                     $message = $_SESSION['message'];

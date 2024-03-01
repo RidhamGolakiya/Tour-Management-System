@@ -179,7 +179,7 @@ if (isset($_POST['btnProfile'])) {
                                         <input type="text" class="form-control" name="phone_no" value="<?php echo $phone_no; ?>" placeholder="Phone no.">
                                     </div>
                                     <div class="d-flex mt-5">
-                                        <div><button class="btn btn-outline-secondary me-3" name="btnProfile">Save</button></div><a class="btn btn-secondary me-3" href="/user/dashboard.php">Cancel</a>
+                                        <div><button class="btn btn-outline-secondary me-3" name="btnProfile">Save</button></div><a class="btn btn-secondary me-3" href="<?php echo $appUrl;?>/user/dashboard.php">Cancel</a>
                                     </div>
                                 </div>
                             </form>

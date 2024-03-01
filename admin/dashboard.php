@@ -113,7 +113,7 @@ try {
     </div>
     <div class="row dashboard-widget-p-5">
       <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mt-md-0 mt-sm-0 mt-3">
-        <a href="/admin/users.php">
+        <a href="./users.php">
           <div class="bg-warning cursor-pointer gradient-style1 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -128,7 +128,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mt-md-0 mt-sm-0 mt-3 mb-3">
-        <a href="/admin/managers.php">
+        <a href="./managers.php">
           <div class="bg-warning cursor-pointer gradient-style7 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -143,7 +143,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mb-3">
-        <a href="/admin/tour-packages.php">
+        <a href="./tour-packages.php">
           <div class="bg-warning cursor-pointer gradient-style2 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -158,7 +158,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mb-3">
-        <a href="/admin/blogs.php">
+        <a href="./blogs.php">
           <div class="bg-warning cursor-pointer gradient-style3 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -173,7 +173,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mb-3">
-        <a href="/admin/booking.php">
+        <a href="./booking.php">
           <div class="bg-warning cursor-pointer gradient-style4 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -188,7 +188,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mb-3">
-        <a href="/admin/enquiries.php">
+        <a href="./enquiries.php">
           <div class="bg-warning cursor-pointer gradient-style5 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
@@ -203,7 +203,7 @@ try {
         </a>
       </div>
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 dashboard-widget mb-3">
-        <a href="/admin/booking.php">
+        <a href="./booking.php">
           <div class="bg-warning cursor-pointer gradient-style6 text-white box-shadow widget-style3 rounded">
             <div class="d-flex flex-wrap align-items-center">
               <div class="widget-data">
