@@ -71,10 +71,10 @@ require_once "../components/header.php";
                             <form class="" action="../queries.php" enctype="multipart/form-data" method="post">
                                 <div class="row">
                                     <div class="col-md-12 mb-3 d-flex justify-content-start align-items-center">
-                                        <label for="images">Select Image:</label><span class="text-danger">*</span>
+                                        <label for="images">Select Images:</label><span class="text-danger">*</span>
                                         <ul class="list-style-none mt-3 mx-2">
                                             <li class="uploadBtn add">
-                                                <input type="file" name="image" id="imageInput" accept="image/jpeg, image/png,image/jpg">
+                                                <input type="file" name="image[]" multiple id="imageInput" accept="image/jpeg, image/png,image/jpg">
                                             </li>
                                         </ul>
                                         <div id="imagePreview"></div>

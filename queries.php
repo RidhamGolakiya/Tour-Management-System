@@ -2,7 +2,7 @@
 include_once 'config.php';
 session_start();
 
-function redirectTo($appUrl,$path, $message, $error)
+function redirectTo($appUrl, $path, $message, $error)
 {
   if ($_SESSION['role'] == 1) {
     if ($error == true) {
@@ -41,11 +41,11 @@ if (isset($_POST['save'])) {
   $allowedFormats = array("jpg", "jpeg", "png", "gif");
   // File type checking
   if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-    redirectTo($appUrl,"users.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+    redirectTo($appUrl, "users.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
     $uploadOk = 0;
   }
   if ($uploadOk == 0 && $imageFileType) {
-    redirectTo($appUrl,"users.php", "File was not uploaded..", true);
+    redirectTo($appUrl, "users.php", "File was not uploaded..", true);
   } else {
     // Move file to the location
     if (move_uploaded_file($_FILES["profileImage"]["tmp_name"], $targetFile)) {
@@ -60,7 +60,7 @@ if (isset($_POST['save'])) {
       (isset($_POST['password']) && empty($_POST['password'])) ||
       (isset($_POST['phone_no']) && empty($_POST['phone_no']))
     ) {
-      redirectTo($appUrl,"users.php", "All fields are required.", true);
+      redirectTo($appUrl, "users.php", "All fields are required.", true);
       exit;
     }
     $username = $_POST['username'] ? ucwords($_POST['username']) : '';
@@ -73,13 +73,13 @@ if (isset($_POST['save'])) {
     $checkExistance = "SELECT * FROM users WHERE email = '$email'";
     $isUser = mysqli_query($con, $checkExistance);
     if (mysqli_num_rows($isUser) > 0) {
-      redirectTo($appUrl,"users.php", "This email is already exists", true);
+      redirectTo($appUrl, "users.php", "This email is already exists", true);
     }
     // Insert query
     $sql = "INSERT INTO users (`username`,`image`,`email`,`password`,`phone_no`) VALUES ('$username','$imageName', '$email', '$hashedPassword',$phone_no)";
     $query_run = mysqli_query($con, $sql);
     if ($query_run) {
-      redirectTo($appUrl,"users.php", "User created successfully", false);
+      redirectTo($appUrl, "users.php", "User created successfully", false);
       exit;
     } else {
       echo mysqli_error($con);
@@ -97,7 +97,7 @@ else if (isset($_POST["user_update"])) {
   $sql = "UPDATE users SET username = '$username',email = '$email',phone_no = '$phone_no' WHERE user_id = $id";
   $query_run = mysqli_query($con, $sql);
   if ($query_run) {
-    redirectTo($appUrl,"users.php", "User updated successfully", false);
+    redirectTo($appUrl, "users.php", "User updated successfully", false);
     exit;
   }
 }
@@ -134,12 +134,12 @@ else if (isset($_POST['btn_manager'])) {
   $allowedFormats = array("jpg", "jpeg", "png", "gif");
   // File type checking
   if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-    redirectTo($appUrl,"managers.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+    redirectTo($appUrl, "managers.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
     $uploadOk = 0;
   }
 
   if ($uploadOk == 0 && $imageFileType) {
-    redirectTo($appUrl,"managers.php", "File was not uploaded.", true);
+    redirectTo($appUrl, "managers.php", "File was not uploaded.", true);
   } else {
     // Move file to the location
     if (move_uploaded_file($_FILES["profileImage"]["tmp_name"], $targetFile)) {
@@ -154,7 +154,7 @@ else if (isset($_POST['btn_manager'])) {
       (isset($_POST['password']) && empty($_POST['password'])) ||
       (isset($_POST['phone_no']) && empty($_POST['phone_no']))
     ) {
-      redirectTo($appUrl,"users.php", "All fields are required.", true);
+      redirectTo($appUrl, "users.php", "All fields are required.", true);
       exit;
     }
     $username = $_POST['username'] ? ucwords($_POST['username']) : '';
@@ -168,16 +168,16 @@ else if (isset($_POST['btn_manager'])) {
     $isUser = mysqli_query($con, $checkExistance);
     if (mysqli_num_rows($isUser) > 0) {
       unset($_SESSION['message']);
-      redirectTo($appUrl,"managers.php", "This email is already exists.", true);
+      redirectTo($appUrl, "managers.php", "This email is already exists.", true);
     }
     // Insert query
     $sql = "INSERT INTO users (`username`,`image`,`email`,`role`,`password`,`phone_no`) VALUES ('$username','$imageName', '$email',2,'$hashedPassword',$phone_no)";
     $query_run = mysqli_query($con, $sql);
     if ($query_run) {
-      redirectTo($appUrl,"managers.php", "Manager created successfully.", false);
+      redirectTo($appUrl, "managers.php", "Manager created successfully.", false);
       exit;
     } else {
-      redirectTo($appUrl,"managers.php", mysqli_error($con), true);
+      redirectTo($appUrl, "managers.php", mysqli_error($con), true);
     }
   }
 }
@@ -192,7 +192,7 @@ else if (isset($_POST["manager_update"])) {
   $sql = "UPDATE users SET username = '$username',email = '$email',phone_no = '$phone_no' WHERE user_id = $id";
   $query_run = mysqli_query($con, $sql);
   if ($query_run) {
-    redirectTo($appUrl,"managers.php", "Manager updated successfully", false);
+    redirectTo($appUrl, "managers.php", "Manager updated successfully", false);
     exit;
   }
 }
@@ -200,40 +200,54 @@ else if (isset($_POST["manager_update"])) {
 // ----------------------- Save tour Package -----------------------
 
 else if (isset($_POST['pack_save'])) {
-  $imageName = '';
-  $targetDirectory = "./uploads/tours/";
-  if (!file_exists($targetDirectory)) {
-    mkdir($targetDirectory, 0777, true);
-  }
-  $newFileName = uniqid() . "_" . basename($_FILES["image"]["name"]); // Generate a unique name
-  $targetFile = $targetDirectory . $newFileName;
+  $imageNames = array(); // Array to store uploaded image names
 
-  $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+  // Loop through each uploaded file
+  foreach ($_FILES["image"]["tmp_name"] as $key => $tmp_name) {
+      $imageName = '';
+      $targetDirectory = "./uploads/tours/";
+      if (!file_exists($targetDirectory)) {
+          mkdir($targetDirectory, 0777, true);
+      }
+      $newFileName = uniqid() . "_" . basename($_FILES["image"]["name"][$key]); // Generate a unique name
+      $targetFile = $targetDirectory . $newFileName;
 
-  // File type checking
-  $allowedFormats = array("jpg", "jpeg", "png", "gif");
-  if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-    redirectTo($appUrl,"tour-packages.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
-    exit;
-  } else {
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-      $imageName = $newFileName;
-    } else {
-      $_SESSION['success'] = false;
-      $_SESSION['message'] = "Error uploading file.";
-    }
+      $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+      // File type checking
+      $allowedFormats = array("jpg", "jpeg", "png", "gif");
+      if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
+          redirectTo($appUrl, "tour-packages.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+          exit;
+      } else {
+          if (move_uploaded_file($_FILES["image"]["tmp_name"][$key], $targetFile)) {
+              $imageNames[] = $newFileName; // Store uploaded image name in array
+          } else {
+              $_SESSION['success'] = false;
+              $_SESSION['message'] = "Error uploading file.";
+          }
+      }
   }
+
+  // Check if at least one image uploaded
+  if (empty($imageNames)) {
+      redirectTo($appUrl, "tour-packages.php", "At least one image is required.", true);
+      exit;
+  }
+
+  // Construct the list of image names separated by commas
+  $imageList = implode(",", $imageNames);
 
   if (
-    (isset($_POST['tour_name']) && empty($_POST['tour_name'])) ||
-    (isset($_POST['description']) && empty($_POST['description'])) ||
-    (isset($_POST['price']) && empty($_POST['price'])) ||
-    (isset($_POST['state_name']) && empty($_POST['state_name'])) ||
-    (isset($_POST['country_name']) && empty($_POST['country_name'])) ||
-    (isset($_POST['other_details']) && empty($_POST['other_details']))
+      (isset($_POST['tour_name']) && empty($_POST['tour_name'])) ||
+      (isset($_POST['description']) && empty($_POST['description'])) ||
+      (isset($_POST['price']) && empty($_POST['price'])) ||
+      (isset($_POST['state_name']) && empty($_POST['state_name'])) ||
+      (isset($_POST['country_name']) && empty($_POST['country_name'])) ||
+      (isset($_POST['other_details']) && empty($_POST['other_details']))
   ) {
-    redirectTo($appUrl,"tour-packages.php", "All fields are required.", true);
-    exit;
+      redirectTo($appUrl, "tour-packages.php", "All fields are required.", true);
+      exit;
   }
 
   $tour_name = $_POST["tour_name"];
@@ -246,15 +260,15 @@ else if (isset($_POST['pack_save'])) {
   $description = str_replace("'", "''", $description);
   $other_details = str_replace("'", "''", $other_details);
   // insert package query
-  $sql = "INSERT INTO tour_packages (tour_name, description, images,country_name,state_name, price, other_details) VALUES ('$tour_name', '$description', '$imageName','$country_name','$state_name', $price, '$other_details')";
+  $sql = "INSERT INTO tour_packages (tour_name, description, images, country_name, state_name, price, other_details) VALUES ('$tour_name', '$description', '$imageList', '$country_name', '$state_name', $price, '$other_details')";
   $result = mysqli_query($con, $sql);
-  echo $sql;
 
   if ($result) {
-    redirectTo($appUrl,"tour-packages.php", "Tour package created successfully.", false);
+      redirectTo($appUrl, "tour-packages.php", "Tour package created successfully.", false);
   } else {
-    redirectTo($appUrl,"tour-packages.php", mysqli_error($con), true);
+      redirectTo($appUrl, "tour-packages.php", mysqli_error($con), true);
   }
+
 }
 
 // -----------------------  Update Tour Package -----------------------
@@ -276,7 +290,7 @@ else if (isset($_POST["updt_pkg"])) {
   // File type checking
   $allowedFormats = array("jpg", "jpeg", "png", "gif");
   if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-    redirectTo($appUrl,"tour-packages.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+    redirectTo($appUrl, "tour-packages.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
     exit;
   } else {
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
@@ -303,10 +317,10 @@ else if (isset($_POST["updt_pkg"])) {
   $update_sql = "UPDATE tour_packages SET images='$imageName',tour_name='$tour_name', description='$description',country_name='$country_name',state_name='$state_name', price=$price, other_details='$other_details' WHERE tour_id=$id";
   $update_result = mysqli_query($con, $update_sql);
   if ($update_result) {
-    redirectTo($appUrl,"tour-packages.php", "Tour package details updated successfully.", false);
+    redirectTo($appUrl, "tour-packages.php", "Tour package details updated successfully.", false);
     exit;
   } else {
-    redirectTo($appUrl,"tour-packages.php", mysqli_error($con), true);
+    redirectTo($appUrl, "tour-packages.php", mysqli_error($con), true);
   }
 }
 
@@ -318,15 +332,15 @@ else if (isset($_GET["tour_id"])) {
   $delete_result = mysqli_query($con, $sql);
   if ($delete_result) {
     echo 1;
-} else {
+  } else {
     $error_message = mysqli_error($con);
     // Check if the error message contains keywords related to foreign key constraints
     if (strpos($error_message, "foreign key constraint") !== false) {
-        echo "Tour package has been booked by user so can't deleted.";
+      echo "Tour package has been booked by user so can't deleted.";
     } else {
-        echo "An error occurred while deleting the record: $error_message";
+      echo "An error occurred while deleting the record: $error_message";
     }
-}
+  }
 }
 
 // ----------------------- Create Blog -----------------------
@@ -346,7 +360,7 @@ else if (isset($_POST['blog_save'])) {
     // File type checking
     $allowedFormats = array("jpg", "jpeg", "png", "gif");
     if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-      redirectTo($appUrl,"blogs.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+      redirectTo($appUrl, "blogs.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
       exit;
     } else {
       if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
@@ -363,7 +377,7 @@ else if (isset($_POST['blog_save'])) {
       (isset($_POST['description']) && empty($_POST['description'])) ||
       (isset($_POST['category']) && empty($_POST['category']))
     ) {
-      redirectTo($appUrl,"blogs.php", "All fields are required.", true);
+      redirectTo($appUrl, "blogs.php", "All fields are required.", true);
       exit;
     }
 
@@ -378,7 +392,7 @@ else if (isset($_POST['blog_save'])) {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-      redirectTo($appUrl,"blogs.php", "Blog created successfully", false);
+      redirectTo($appUrl, "blogs.php", "Blog created successfully", false);
     }
   } catch (PDOException $e) {
     $_SESSION['success'] = false;
@@ -402,7 +416,7 @@ else if (isset($_POST["updt_blog"])) {
   // File type checking
   $allowedFormats = array("jpg", "jpeg", "png", "gif");
   if (!in_array($imageFileType, $allowedFormats) && $imageFileType) {
-    redirectTo($appUrl,"blogs.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
+    redirectTo($appUrl, "blogs.php", "Only JPG, JPEG, PNG, and GIF files are allowed.", true);
     exit;
   }
 
@@ -410,7 +424,7 @@ else if (isset($_POST["updt_blog"])) {
     $imageName = $newFileName;
     unlink("./uploads/blogs/" . $oldImage);
   } else {
-    redirectTo($appUrl,"blogs.php", "Error while uploading blog", true);
+    redirectTo($appUrl, "blogs.php", "Error while uploading blog", true);
   }
 
   $blog_id = $_POST["blog_id"];
@@ -423,10 +437,10 @@ else if (isset($_POST["updt_blog"])) {
   $update_blog = "UPDATE blogs SET image='$imageName',title='$title',category='$category', description='$description' WHERE blog_id=$blog_id";
   $update_result = mysqli_query($con, $update_blog);
   if ($update_result) {
-    redirectTo($appUrl,"blogs.php", "Blog updated successfully.", false);
+    redirectTo($appUrl, "blogs.php", "Blog updated successfully.", false);
     exit;
   } else {
-    redirectTo($appUrl,"blogs.php", mysqli_error($con), true);
+    redirectTo($appUrl, "blogs.php", mysqli_error($con), true);
   }
 }
 
@@ -521,7 +535,7 @@ else if (isset($_POST["btn_question"])) {
   $name = $_POST["name"];
   $questionQuery = "insert into squestions (`name`) values ('$name')";
   $result = mysqli_query($con, $questionQuery);
-  redirectTo($appUrl,"security-questions.php", "Question created successfully", false);
+  redirectTo($appUrl, "security-questions.php", "Question created successfully", false);
 }
 
 // ----------------------- Edit Question -----------------------
@@ -531,7 +545,7 @@ else if (isset($_POST["btn_edit_question"])) {
   $id = $_POST["id"];
   $questionQuery = "update squestions set name = '$name' where id = $id";
   $result = mysqli_query($con, $questionQuery);
-  redirectTo($appUrl,"security-questions.php", "Question created successfully", false);
+  redirectTo($appUrl, "security-questions.php", "Question created successfully", false);
 }
 
 // ----------------------- Delete Question -----------------------
@@ -564,7 +578,7 @@ else if (isset($_POST["btn_privacy_policy"])) {
   $privacy_policy = str_replace("'", "''", $privacy_policy);
   $privacyQuery = "update settings set privacy_policy = '$privacy_policy',p_date = '$date'";
   $result = mysqli_query($con, $privacyQuery);
-  redirectTo($appUrl,"settings.php", "Privacy Policy updated successfully", false);
+  redirectTo($appUrl, "settings.php", "Privacy Policy updated successfully", false);
 }
 
 // ----------------------- Update Terms And Condition -----------------------
@@ -575,7 +589,7 @@ else if (isset($_POST["btn_terms_condition"])) {
   $terms_condition = str_replace("'", "''", $terms_condition);
   $TermsQuery = "update settings set terms_condition = '$terms_condition',t_date = '$date'";
   $result = mysqli_query($con, $TermsQuery);
-  redirectTo($appUrl,"settings.php", "Terms And Conditions updated successfully", false);
+  redirectTo($appUrl, "settings.php", "Terms And Conditions updated successfully", false);
 }
 
 // ----------------------- Add Country -----------------------
@@ -585,7 +599,7 @@ else if (isset($_POST["country_save"])) {
   $addCountryQuery = "insert into countries (name) values ('$name')";
   $result = mysqli_query($con, $addCountryQuery);
   if ($result) {
-    redirectTo($appUrl,"countries.php", "Country added successfully", false);
+    redirectTo($appUrl, "countries.php", "Country added successfully", false);
   }
 }
 
@@ -596,7 +610,7 @@ else if (isset($_POST["country_edit"])) {
   $name = $_POST["country_name"];
   $countryQuery = "update countries set name = '$name' where id = $country_id";
   $result = mysqli_query($con, $countryQuery);
-  redirectTo($appUrl,"countries.php", "Country updated successfully", false);
+  redirectTo($appUrl, "countries.php", "Country updated successfully", false);
 }
 
 // ----------------------- Delete Country -----------------------
@@ -624,7 +638,7 @@ else if (isset($_POST["state_save"])) {
   $addCountryQuery = "insert into states (name) values ('$name')";
   $result = mysqli_query($con, $addCountryQuery);
   if ($result) {
-    redirectTo($appUrl,"states.php", "State added successfully", false);
+    redirectTo($appUrl, "states.php", "State added successfully", false);
   }
 }
 
@@ -632,14 +646,14 @@ else if (isset($_POST["state_save"])) {
 
 else if (isset($_POST["state_edit"])) {
   if (empty($_POST['state_name'])) {
-    redirectTo($appUrl,"states.php", "Please enter name", true);
+    redirectTo($appUrl, "states.php", "Please enter name", true);
     exit;
   }
   $state_id = $_POST["state_id"];
   $state_name = $_POST["state_name"];
   $stateQuery = "update states set name = '$state_name' where id = $state_id";
   $result = mysqli_query($con, $stateQuery);
-  redirectTo($appUrl,"states.php", "State updated successfully", false);
+  redirectTo($appUrl, "states.php", "State updated successfully", false);
 }
 
 // ----------------------- Delete State -----------------------
@@ -697,7 +711,6 @@ else if (isset($_POST["payment"])) {
     $_SESSION['success'] = true;
     $_SESSION['message'] = "You successfully booked a tour package. Go to dashboard for show more details.";
     header("Location: $appUrl/packages.php");
-
   }
   // Stripe Payment Method
   elseif ($payment_method === 'strp') {
@@ -752,11 +765,9 @@ else if (isset($_POST["payment"])) {
       )
     );
     header("Location: " . $stripeSession->url);
-  }else{
+  } else {
     $_SESSION['success'] = false;
     $_SESSION['message'] = mysqli_error($con);
     header("Location: $appUrl/packages.php");
   }
 }
-
-?>
