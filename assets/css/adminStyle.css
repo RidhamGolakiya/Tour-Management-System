@@ -267,3 +267,40 @@ li.uploadBtn {
   opacity: 0.7 !important;
   color: white !important;
 }
+/* Updated CSS */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.preview-image {
+  width: 100px; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 0, 0, 0.7); /* Adjust background color */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn:hover {
+  background-color: rgba(255, 0, 0, 0.9); /* Adjust hover background color */
+}

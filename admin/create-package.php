@@ -21,7 +21,7 @@ require_once "../components/header.php";
         <!-- Sidebar scroll-->
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
-                        <a href="<?php echo $appUrl;?>" class="navbar-brand" style="font-size:30px">
+                <a href="<?php echo $appUrl; ?>" class="navbar-brand" style="font-size:30px">
                     <div class="d-flex align-items-center"><img src="../uploads/settings/<?php echo $_SESSION['logo'] ?>" class="img-fluid" alt="logo" width="50" height="50"><span class="mx-2 my-1" style="font-size:20px"><?php echo $_SESSION['site_name'] ?></span></div>
                 </a>
                 <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -77,7 +77,7 @@ require_once "../components/header.php";
                                                 <input type="file" name="image[]" multiple id="imageInput" accept="image/jpeg, image/png,image/jpg">
                                             </li>
                                         </ul>
-                                        <div id="imagePreview"></div>
+                                        <div id="imagePreview" class="image-preview"></div>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -169,22 +169,48 @@ require_once "../components/header.php";
 
         document.getElementById('other_details_input').value = otherDetailsContent;
     });
-    const previewContainer = document.getElementById('imagePreview');
+    // Updated JavaScript
+    // Updated JavaScript
     $("#imageInput").on('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
+        const files = event.target.files;
+        const previewContainer = document.getElementById('imagePreview');
 
-            reader.onload = function(e) {
-                const image = document.createElement('img');
-                image.src = e.target.result;
-                image.classList.add('preview-image');
-                previewContainer.appendChild(image);
-            };
+        // Clear the previous preview
+        previewContainer.innerHTML = '';
 
-            reader.readAsDataURL(file);
+        // Iterate through selected files
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.classList.add('image-container');
+
+                    const image = document.createElement('img');
+                    image.src = e.target.result;
+                    image.classList.add('preview-image');
+                    imageContainer.appendChild(image);
+
+                    // Add remove button
+                    const removeBtn = document.createElement('button');
+                    removeBtn.innerHTML = '&#10006;'; // Unicode for cross sign
+                    removeBtn.classList.add('remove-btn');
+                    removeBtn.addEventListener('click', function() {
+                        imageContainer.remove();
+                    });
+                    imageContainer.appendChild(removeBtn);
+
+                    previewContainer.appendChild(imageContainer);
+                };
+
+                reader.readAsDataURL(file);
+            }
         }
     });
+
 
     document.addEventListener("DOMContentLoaded", function() {
         var form = document.querySelector("form");
@@ -228,31 +254,33 @@ require_once "../components/header.php";
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $.ajax({
             url: '../fetch.php?allcountries=true',
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
+            success: function(data) {
                 var countrySelect = $('#countrySelect');
                 countrySelect.empty().append('<option value="">Select Country</option>');
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     countrySelect.append('<option value="' + value.id + '">' + value.name + '</option>');
                 });
             }
         });
 
-        $('#countrySelect').change(function () {
+        $('#countrySelect').change(function() {
             var selectedCountry = $(this).val();
             var stateSelect = $('#stateSelect');
             $.ajax({
                 url: '../fetch.php',
                 method: 'GET',
                 dataType: 'json',
-                data: { country_id: selectedCountry },
-                success: function (data) {
+                data: {
+                    country_id: selectedCountry
+                },
+                success: function(data) {
                     stateSelect.empty().append('<option value="">Select State</option>');
-                    $.each(data, function (key, value) {
+                    $.each(data, function(key, value) {
                         stateSelect.append('<option value="' + value.id + '">' + value.name + '</option>');
                     });
                 }

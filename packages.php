@@ -23,7 +23,8 @@ $resultCountries = mysqli_query($con, $fetchCountries);
     <link href="./assets/toastr/toaster.min.css" rel="stylesheet">
     <script src="./assets/toastr/toastr.min.js"></script>
     <script>
-        let appUrl = <?php require_once "config.php"; $appUrl;?>//
+        let appUrl = <?php require_once "config.php";
+                        $appUrl; ?> //
         $(document).ready(function() {
             function load_data(query, selectedCountry, page) {
                 $.ajax({
@@ -45,6 +46,7 @@ $resultCountries = mysqli_query($con, $fetchCountries);
                             $.each(packages, function(index, package) {
                                 var stateName = package.state_name || '';
                                 var formattedPrice = parseFloat(package.price).toFixed(2);
+                                const image = package.images.split(",")
 
                                 html += '<div class="col-md-4 main-div cursor-pointer">';
                                 html += '<div class="sub-div">';
@@ -52,7 +54,7 @@ $resultCountries = mysqli_query($con, $fetchCountries);
                                 html += '<div class="start_content">';
                                 html += '<article class="card">';
                                 html += '<div class="image-container">';
-                                html += '<img class="img-fluid" src="./uploads/tours/' + package.images + '" alt="" decoding="async" loading="lazy">';
+                                html += '<img class="img-fluid" src="./uploads/tours/' + image[0] + '" alt="" decoding="async" loading="lazy">';
                                 html += '</div>';
                                 html += '</article>';
                                 html += '<div>';
@@ -97,6 +99,8 @@ $resultCountries = mysqli_query($con, $fetchCountries);
                         }
                         $('#result').html(html);
                     }
+
+
                 });
             }
 
